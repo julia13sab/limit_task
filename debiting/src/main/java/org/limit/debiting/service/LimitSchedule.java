@@ -20,15 +20,10 @@ public class LimitSchedule {
 
     @Scheduled(cron = "${spring.application.cache.schedule}")
     public void scheduleClearLimits() {
-        log.info("Запущено задание сброса денежных лимитов в начальное значение {}", cacheProperties.getLimit());
+        final var limit = cacheProperties.getLimit();
+        log.info("Запущено задание сброса денежных лимитов в начальное значение {}", limit);
 
-        final var limits = cashLimitRepository.findAll();
-
-        log.info("Получено лимитов {}", limits.size());
-
-        limits.forEach(limit -> limit.setLimitValue(new BigDecimal(cacheProperties.getLimit())));
-
-        cashLimitRepository.saveAll(limits);
+        cashLimitRepository.updateLimits(new BigDecimal(limit));
 
         log.info("Задание сброса денежных лимитов завершено");
     }

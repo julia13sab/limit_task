@@ -5,7 +5,7 @@ import lombok.Data;
 import java.math.BigDecimal;
 
 @Data
-public class PaymentRequest {
+public class OperationRequest {
     private Long user;
     private BigDecimal amount;
     private Boolean withReserve;

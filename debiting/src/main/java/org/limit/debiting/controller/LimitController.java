@@ -2,10 +2,10 @@ package org.limit.debiting.controller;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import org.limit.debiting.model.PaymentCancellationRequest;
-import org.limit.debiting.model.PaymentConfirmationRequest;
-import org.limit.debiting.model.PaymentRequest;
-import org.limit.debiting.model.PaymentResponse;
+import org.limit.debiting.model.OperationCancellationRequest;
+import org.limit.debiting.model.OperationConfirmationRequest;
+import org.limit.debiting.model.OperationRequest;
+import org.limit.debiting.model.OperationResponse;
 import org.limit.debiting.service.LimitService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,23 +21,23 @@ public class LimitController {
     private final LimitService limitService;
 
     @PostMapping("/init")
-    public PaymentResponse initPayment(@RequestBody PaymentRequest paymentRequest) {
-        log.info("Получен запрос с инициализацией платежа: {}", paymentRequest);
+    public OperationResponse initOperation(@RequestBody OperationRequest operationRequest) {
+        log.info("Получен запрос с инициализацией операции: {}", operationRequest);
 
-        return limitService.initPayment(paymentRequest);
+        return limitService.initPayment(operationRequest);
     }
 
     @PostMapping("/commit")
-    public void commitPayment(@RequestBody PaymentConfirmationRequest paymentConfirmationRequest) {
-        log.info("Получен запрос с подтверждением платежа: {}", paymentConfirmationRequest);
+    public void commitOperation(@RequestBody OperationConfirmationRequest operationConfirmationRequest) {
+        log.info("Получен запрос с подтверждением операции: {}", operationConfirmationRequest);
 
-        limitService.commitPayment(paymentConfirmationRequest);
+        limitService.commitPayment(operationConfirmationRequest);
     }
 
     @PostMapping("/rollback")
-    public void rollbackPayment(@RequestBody PaymentCancellationRequest paymentCancellationRequest) {
-        log.info("Получен запрос с отменой платежа: {}", paymentCancellationRequest);
+    public void rollbackOperation(@RequestBody OperationCancellationRequest operationCancellationRequest) {
+        log.info("Получен запрос с отменой операции: {}", operationCancellationRequest);
 
-        limitService.rollbackPayment(paymentCancellationRequest);
+        limitService.rollbackPayment(operationCancellationRequest);
     }
 }

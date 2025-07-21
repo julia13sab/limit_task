@@ -3,6 +3,6 @@ package org.limit.debiting.model;
 import lombok.Data;
 
 @Data
-public class PaymentCancellationRequest {
+public class OperationCancellationRequest {
     private Long paymentId;
 }

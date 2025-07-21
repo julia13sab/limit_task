@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 
 @Data
 @Builder
-public class PaymentResponse {
+public class OperationResponse {
     private Long id;
     private BigDecimal limit;
 }
