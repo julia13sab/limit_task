@@ -1,0 +1,9 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: limit
+    cache:
+      limit: 100000
+      schedule: 0 0 0 * * *
